@@ -37,6 +37,7 @@ public class SchedulingService {
         }
 
         Scheduling agendamento = Scheduling.builder()
+
                 .cliente(cliente)
                 .profissional(profissional)
                 .dataHora(dto.dataHora())
