@@ -6,9 +6,7 @@ import com.app.agendamentoConsultaApi.model.Client;
 import com.app.agendamentoConsultaApi.service.ClientService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +20,7 @@ public class ClientController {
         this.clientService = clientService;
     }
 
+    @PostMapping
     public ResponseEntity<ClientResponseDTO> criar(@RequestBody @Valid ClientRequestDTO dto){
         Client client = clientService.criar(dto);
         return ResponseEntity.ok(new ClientResponseDTO(
@@ -29,6 +28,7 @@ public class ClientController {
         ));
     }
 
+    @GetMapping
     public ResponseEntity<List<ClientResponseDTO>> listar(){
         return ResponseEntity.ok(clientService.listarTodos());
     }
