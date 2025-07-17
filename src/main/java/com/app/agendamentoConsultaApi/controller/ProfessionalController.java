@@ -34,4 +34,14 @@ public class ProfessionalController {
     public ResponseEntity<List<ProfessionalResponseDTO>> listarTodos(){
         return ResponseEntity.ok(professionalService.listarTodos());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProfessionalResponseDTO> buscarPorId(@PathVariable Long id){
+        Professional professional = professionalService.buscarPorId(id);
+        return ResponseEntity.ok(new ProfessionalResponseDTO(
+                professional.getId(),
+                professional.getName(),
+                professional.getEspecialidade()
+        ));
+    }
 }

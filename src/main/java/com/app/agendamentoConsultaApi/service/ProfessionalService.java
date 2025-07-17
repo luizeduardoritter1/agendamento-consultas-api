@@ -35,4 +35,9 @@ public class ProfessionalService {
                 ))
                 .toList();
     }
+
+    public Professional buscarPorId(Long id){
+        return professionalRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("Profissional não encontrado"));
+    }
 }

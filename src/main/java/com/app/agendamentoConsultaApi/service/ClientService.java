@@ -31,4 +31,9 @@ public class ClientService {
                 .map(c -> new ClientResponseDTO(c.getId(), c.getName(), c.getEmail() ,c.getTelefone()))
                 .toList();
     }
+
+    public Client buscarPorId(Long id){
+        return clientRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("Cliente não encontrado"));
+    }
 }

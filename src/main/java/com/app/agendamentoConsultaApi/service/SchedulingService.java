@@ -9,6 +9,7 @@ import com.app.agendamentoConsultaApi.model.Scheduling;
 import com.app.agendamentoConsultaApi.repository.ClientRepository;
 import com.app.agendamentoConsultaApi.repository.ProfessionalRepository;
 import com.app.agendamentoConsultaApi.repository.SchedulingRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -52,6 +53,19 @@ public class SchedulingService {
                 profissional.getName(),
                 salvo.getDataHora(),
                 salvo.getObservacao()
+        );
+    }
+
+    public SchedulingResponseDTO buscarPorId(Long id){
+        Scheduling agendamento = schedulingRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("Agendamento não encontrado"));
+
+        return new SchedulingResponseDTO(
+                agendamento.getId(),
+                agendamento.getCliente().getName(),
+                agendamento.getProfissional().getName(),
+                agendamento.getDataHora(),
+                agendamento.getObservacao()
         );
     }
 }

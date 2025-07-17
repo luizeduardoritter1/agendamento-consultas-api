@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/agendamento")
+@RequestMapping("/agendamentos")
 public class SchedulingController {
 
     private final SchedulingService schedulingService;
@@ -21,6 +21,12 @@ public class SchedulingController {
     @PostMapping
     public ResponseEntity<SchedulingResponseDTO> agendar(@RequestBody @Valid SchedulingRequestDTO dto){
         SchedulingResponseDTO response = schedulingService.agendar(dto);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping
+    public ResponseEntity<SchedulingResponseDTO> buscarPorId(@PathVariable Long id){
+        SchedulingResponseDTO response = schedulingService.buscarPorId(id);
         return ResponseEntity.ok(response);
     }
 }

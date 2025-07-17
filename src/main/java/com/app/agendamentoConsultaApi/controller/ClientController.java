@@ -32,4 +32,15 @@ public class ClientController {
     public ResponseEntity<List<ClientResponseDTO>> listar(){
         return ResponseEntity.ok(clientService.listarTodos());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ClientResponseDTO> buscarPorId(@PathVariable Long id){
+        Client client = clientService.buscarPorId(id);
+        return ResponseEntity.ok(new ClientResponseDTO(
+                client.getId(),
+                client.getName(),
+                client.getEmail(),
+                client.getTelefone()
+        ));
+    }
 }
